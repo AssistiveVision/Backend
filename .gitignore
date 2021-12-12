@@ -2,6 +2,7 @@
 .env 
 env/
 api/migrations/
+services/depth_perception/nyu.h5
 # Created by https://www.toptal.com/developers/gitignore/api/django
 # Edit at https://www.toptal.com/developers/gitignore?templates=django
 
