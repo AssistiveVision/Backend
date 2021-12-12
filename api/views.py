@@ -17,10 +17,11 @@ def object_detection(request):
 #import matplotlib.pyplot as plt
 import numpy as np  
 import base64
+from services.depth_perception.distanceApprox import closeness_warning
 def depth_perception(request):
     if request.method=="POST":
         #print(request.POST)
-        x,y,w,h=request.POST['x'],request.POST['y'],request.POST['w'],request.POST['h']
+        x,y,w,h=int(request.POST['x']),int(request.POST['y']),int(request.POST['w']),int(request.POST['h'])
         image_byte_data=request.FILES['image']    
         image = Image.open(image_byte_data)
         image = image.resize((640, 480), Image.ANTIALIAS)
@@ -28,7 +29,8 @@ def depth_perception(request):
         #plt.imshow(image)
         #plt.show()
         output=depth_perception_service.predict_api(image)
-        
+        #print(closeness_warning(output,x,y,w,h))
+        '''
         # this portions shares image in json 
         print(output)
         encoded_string = str(base64.b64encode(output.tobytes()))
@@ -36,7 +38,9 @@ def depth_perception(request):
             'output':encoded_string
         }
         return JsonResponse(json_output)
-        # json work end 
+        # json work end
+        '''
+        return HttpResponse(closeness_warning(output,x,y,w,h)) 
     return render(request,template_name="api/form.html")
 
 def speech_to_text(request):
