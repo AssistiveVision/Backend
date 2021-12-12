@@ -24,6 +24,7 @@ def depth_perception(request):
         x,y,w,h=int(request.POST['x']),int(request.POST['y']),int(request.POST['w']),int(request.POST['h'])
         image_byte_data=request.FILES['image']    
         image = Image.open(image_byte_data)
+        image = image.convert('RGB')
         image = image.resize((640, 480), Image.ANTIALIAS)
         image = np.clip(np.asarray(image, dtype=float) / 255, 0, 1)
         #plt.imshow(image)
