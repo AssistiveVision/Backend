@@ -9,10 +9,10 @@ def closeness_warning(depth_image,x,y,w,h):
                 max_pixel=cropped_depth_map[i][j][0]
     
     
-    if max_pixel in range(0,255/3):
+    if max_pixel in range(0,int(255/3)):
         # (0,255/3)
         return -1 #"very near" 
-    elif max_pixel in range(255/3,2*255/3):
+    elif max_pixel in range(int(255/3),int(2*255/3)):
         # (255/3,2*255/3)
         return 0 #"near"
     else:
