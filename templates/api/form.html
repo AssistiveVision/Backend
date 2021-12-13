@@ -8,7 +8,6 @@
 </head>
 <body>
     <form action="{% url 'depth_perception' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
         <label>Select Image File:</label>
         <input type="file" name="image">
         <input type="text" name="x">

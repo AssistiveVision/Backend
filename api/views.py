@@ -18,6 +18,8 @@ def object_detection(request):
 import numpy as np  
 import base64
 from services.depth_perception.distanceApprox import closeness_warning
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
 def depth_perception(request):
     if request.method=="POST":
         #print(request.POST)
